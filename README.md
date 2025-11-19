@@ -34,6 +34,8 @@ The goal of this assessment is to evaluate your ability to:
    - No need for complex UI or data persistence 
    - just demonstrate that the data was fetched successfully.
 
+![img.png](screenshots/img.png)
+
 ---
 
 ## 📤 Submission

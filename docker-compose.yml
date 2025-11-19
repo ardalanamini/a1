@@ -1,0 +1,18 @@
+services:
+
+  test-api:
+    container_name: test-api
+    image         : test-api
+    build         :
+      context   : .
+      dockerfile: Dockerfile
+    restart       : unless-stopped
+    env_file      :
+      - .env
+    ports         :
+      - "3001:3001"
+    networks      :
+      - test-backend
+
+networks:
+  test-backend:

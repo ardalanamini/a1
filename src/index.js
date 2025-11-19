@@ -25,20 +25,21 @@ const checkPort = async (port, maxPort = 65535) => {
 };
 
 (async () => {
-    const safePort = await checkPort(PORT);
-    const getPort = (await import('get-port')).default; // dynamic import
-    const final_port = await getPort({ port: safePort });
+    // const safePort = await checkPort(PORT);
+    // const getPort = (await import('get-port')).default; // dynamic import
+    // const final_port = await getPort({ port: safePort });
 
-    console.log(`Port ${final_port} is free. Ready to start server.`);
+    // console.log(`Port ${final_port} is free. Ready to start server.`);
 
     // Middleware
-    app.use(cors({ origin: `http://localhost:${final_port}` }));
+    app.use(cors({ origin: `http://localhost:${PORT}` }));
     app.use(express.json());
     app.use(morgan('dev'));
 
     // Routes
     app.use('/api/items', require('./routes/items'));
     app.use('/api/stats', require('./routes/stats'));
+    app.use('/api/test', require('./routes/test'));
 
     require('./config/dbHandler.js').connect();
 
@@ -72,7 +73,7 @@ const checkPort = async (port, maxPort = 65535) => {
     }
 
     // Start server
-    app.listen(final_port, () => {
-        console.log(`Backend running on http://localhost:${final_port}`);
+    app.listen(PORT, () => {
+        console.log(`Backend running on http://localhost:${PORT}`);
     });
 })();
